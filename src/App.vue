@@ -8,14 +8,10 @@
 </template>
 
 <script type="es6">
-  import {Loading} from 'vux'
   import {mapState} from 'vuex'
 
   export default {
     name: 'app',
-    components: {
-      Loading
-    },
     data() {
       return {}
     },
