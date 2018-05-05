@@ -4,7 +4,7 @@ import FastClick from 'fastclick'
 import VueRouter from 'vue-router'
 import App from './App'
 import router from '@/router/index'
-import {ConfirmPlugin, AlertPlugin, ToastPlugin, TransferDom, Flexbox, FlexboxItem, XTextarea, Tab, TabItem, LoadMore, Blur, FormPreview, Box, CellFormPreview, CellBox, XHeader, XImg, Divider, Tabbar, TabbarItem, Group, Cell, Panel, Badge, Marquee, MarqueeItem, XInput, XButton} from 'vux'
+import {ConfirmPlugin, AlertPlugin, ToastPlugin, TransferDom, Loading, Flexbox, FlexboxItem, XTextarea, Tab, TabItem, LoadMore, Blur, FormPreview, Box, CellFormPreview, CellBox, XHeader, XImg, Divider, Tabbar, TabbarItem, Group, Cell, Panel, Badge, Marquee, MarqueeItem, XInput, XButton} from 'vux'
 import utils from '@/utils/utils'
 
 require('./assets/icon/iconfont');
@@ -15,6 +15,7 @@ Vue.use(ConfirmPlugin)
 Vue.use(AlertPlugin)
 Vue.use(ToastPlugin)
 Vue.directive('transfer-dom', TransferDom)
+Vue.component('loading', Loading)
 Vue.component('flexbox', Flexbox)
 Vue.component('flexbox-item', FlexboxItem)
 Vue.component('form-preview', FormPreview)
