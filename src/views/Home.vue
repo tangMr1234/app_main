@@ -22,14 +22,10 @@
 </template>
 
 <script type="es6">
-  import {ViewBox, Tabbar, TabbarItem} from 'vux'
   import {getMessageCount} from '@/api/api';
   import {mapState} from 'vuex'
 
   export default {
-    components: {
-      ViewBox, Tabbar, TabbarItem
-    },
     data() {
       return {
         badge: "",
