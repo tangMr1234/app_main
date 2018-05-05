@@ -13,12 +13,8 @@
 </template>
 
 <script type="es6">
-  import {XHeader} from 'vux'
 
   export default {
-    components: {
-      XHeader
-    },
     data() {
       return {}
     },
