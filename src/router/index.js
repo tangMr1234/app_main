@@ -120,15 +120,26 @@ export default new Router({
       component: Home,
       redirect: {path: '/index'},
       children: [
-        //Frame框架页
-        {path: '/mainframe', component: MainFrame, name: 'Frame框架页', hidden: true, meta: {tabbar: false, keepAlive: true}},
-        {path: '/index', component: Index, NewRouter: 'index', name: '首页', icon: 'icon-shouye', meta: {tabbar: true, keepAlive: true}},
-        // NewRouter: value 表示是tab页面的路由,vlaue对应redirect path的第一个/后面的值
+        {
+          path: '/mainframe',
+          component: MainFrame,
+          name: 'Frame框架页',
+          hidden: true,
+          meta: {tabbar: false, keepAlive: true}
+        },
+        {
+          path: '/index',
+          component: Index,
+          NewRouter: 'index',
+          name: '首页',
+          icon: 'icon-shouye',
+          meta: {tabbar: true, keepAlive: true}
+        },
         {
           path: '/userHome',
           component: User,
           name: '我的',
-		  meta: {name: "我的", tabbar: true, keepAlive: true}
+          meta: {name: "我的", tabbar: true, keepAlive: true}
         },
         {
           path: '/moreHome',
@@ -136,8 +147,32 @@ export default new Router({
           component: HHome,
           name: '有header的页面',
           children: [
-		    {path: '/messageHome', component: Message, name: '消息', meta: {name: '消息', headBack: false, tabbar: true, keepAlive: false}},
-            {path: '/moreHome/more', component: More, name: '更多', meta: {name: '更多', headBack: false, keepAlive: true}, hidden: true},
+            {
+              path: '/messageHome',
+              component: Message,
+              name: '消息',
+              meta: {name: '消息', headBack: false, tabbar: true, keepAlive: false}
+            },
+            {
+              path: '/userHome/address',
+              component: Map,
+              hidden: true,
+              meta: {name: "地图", tabbar: false, keepAlive: true}
+            },
+            //详情页面
+            {
+              path: '/messageHome/details',
+              component: Details,
+              hidden: true,
+              meta: {name: "详情", tabbar: false, keepAlive: true}
+            },
+            {
+              path: '/moreHome/more',
+              component: More,
+              name: '更多',
+              meta: {name: '更多', headBack: false, keepAlive: true},
+              hidden: true
+            },
             {
               path: '/moreHome/qrcode',
               component: MorePublic,
@@ -145,7 +180,13 @@ export default new Router({
               meta: {name: "二维码", type: 'code', tabbar: false, keepAlive: true},
               hidden: true
             },
-            {path: '/moreHome/help', component: Help, name: "使用帮助", meta: {name: '使用帮助', tabbar: false, keepAlive: true}, hidden: true},
+            {
+              path: '/moreHome/help',
+              component: Help,
+              name: "使用帮助",
+              meta: {name: '使用帮助', tabbar: false, keepAlive: true},
+              hidden: true
+            },
             {
               path: '/moreHome/aboutus',
               component: AboutUs,
@@ -168,21 +209,7 @@ export default new Router({
               hidden: true
             }
           ]
-        },
-		{
-		  path: '/userHome/5', redirect: {path: '/userHome/address'}, component: HHome, hidden: true,
-		  children: [
-			// 我的-信息
-			{path: '/userHome/address', component: Map, hidden: true, meta: {name: "地图", tabbar: false, keepAlive: true}},
-			//详情页面
-			{
-			  path: '/messageHome/details',
-			  component: Details,
-			  hidden: true,
-			  meta: {name: "详情", tabbar: false, keepAlive: true}
-			}
-		  ]
-		}
+        }
       ]
     }
   ]
