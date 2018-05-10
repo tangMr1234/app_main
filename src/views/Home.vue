@@ -1,10 +1,10 @@
 <template>
   <div style="height:100%;" v-cloak>
     <view-box ref="viewBox" :body-padding-bottom="($route.meta.tabbar===false)?'0':''">
-	<keep-alive>
-		<router-view v-if="$route.meta.keepAlive"></router-view>
-	</keep-alive>
-	<router-view v-if="!$route.meta.keepAlive"></router-view>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive"></router-view>
       <!-- 底栏菜单 -->
       <tabbar slot="bottom" v-if="MainMenu&&MainMenu!=''&&$route.meta.tabbar!=false">
         <tabbar-item v-for="(item,index) in MainMenu"

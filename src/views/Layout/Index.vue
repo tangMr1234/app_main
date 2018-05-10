@@ -75,17 +75,17 @@
     <!-- APP按钮区域 -->
     <div v-if="Index_data.apps&&Index_data.apps.grid&&Index_data.grid!=''">
       <group :title="item.name" v-for="(item,index) in Index_data.apps.grid" :key="index">
-          <flexbox :gutter="0" wrap="wrap" style="padding:10px 5px;">
-            <flexbox-item :span="1/5" v-for="(obj, index) in item.grid" :key="index"
-                          @click.native="onItemClick(obj.url, obj.frameurl)">
-              <div class="flex-demo app_badge"><img slot="icon" :src="obj.icon">{{obj.label}}
-                <div v-if="obj.warning" class="apps_badge">
-                  <badge v-if="obj.warning=='dot'" class="dot"></badge>
-                  <badge v-else :text="obj.warning" class="number"></badge>
-                </div>
+        <flexbox :gutter="0" wrap="wrap" style="padding:10px 5px;">
+          <flexbox-item :span="1/5" v-for="(obj, index) in item.grid" :key="index"
+                        @click.native="onItemClick(obj.url, obj.frameurl)">
+            <div class="flex-demo app_badge"><img slot="icon" :src="obj.icon">{{obj.label}}
+              <div v-if="obj.warning" class="apps_badge">
+                <badge v-if="obj.warning=='dot'" class="dot"></badge>
+                <badge v-else :text="obj.warning" class="number"></badge>
               </div>
-            </flexbox-item>
-          </flexbox>
+            </div>
+          </flexbox-item>
+        </flexbox>
       </group>
     </div>
     <!-- 广告位2 -->
@@ -169,20 +169,20 @@
           } else {
             _this.confirm("提示", "数据加载出错，请尝试刷新或者联系管理员！", "刷新试试", _this.location); //使用main中的全局方法调用弹窗
           }
-		  _this.loadingRemove(); //  使用main中的全局方法关闭loading
+          _this.loadingRemove(); //  使用main中的全局方法关闭loading
         }).catch(function (error) {
           _this.confirm("提示", error.message, "刷新试试", _this.location); //使用main中的全局方法调用弹窗
-		  _this.loadingRemove(); //  使用main中的全局方法关闭loading
-		});
+          _this.loadingRemove(); //  使用main中的全局方法关闭loading
+        });
       },
     },
     // 页面渲染后执行的钩子
     mounted() {
       this.getIndexData();
     },
-	activated(){
-	  this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
-	},
+    activated() {
+      this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
+    },
     //  销毁组件
     beforeDestroy() {
       // this.$refs.mySwiper.$destroy(false);

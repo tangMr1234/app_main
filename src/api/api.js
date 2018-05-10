@@ -27,15 +27,8 @@ export const getUserData = params => {
   return axios.get(`${baseUrl}` + window.AxiosApi.Main_UserData, {timeout: 60000}).then(res => res.data);
 };
 
-
 //更多数据获取
 export const getMoreData = params => {
   return axios.get(`${baseUrl}` + window.AxiosApi.Main_MoreData, {timeout: 60000}).then(res => res.data);
 };
 
-
-
-//cell.vue组件页面数据获取   -   需删除
-export const getCellData = params => {
-  return axios.get('src/api/cellData.json', params).then(res => res.data);
-};

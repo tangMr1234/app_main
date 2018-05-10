@@ -9,7 +9,6 @@
 
 <script type="es6">
   export default {
-    components: {},
     data() {
       return {
         frameUrl: ''
@@ -32,11 +31,11 @@
         }
       });
     },
-	activated(){
-	  //获取iframe加载页面的url
+    activated() {
+      //获取iframe加载页面的url
       this.frameUrl = this.$route.query.name;
-	  this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
-	},
+      this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
+    },
     //当前页面被销毁时删除session，让试用的APP重新提醒
     beforeDestroy() {
       sessionStorage.removeItem('warn');

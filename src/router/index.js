@@ -1,92 +1,96 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// 登录
 const Login = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/Layout/Login'))
   })
-} // 登录
+}
+// 主页面框架
 const Home = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/Home'))
   })
-} // 主页面框架
+}
+// 有header页面框架
 const HHome = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/HHome'))
   })
-} // 有header页面框架
+}
+// Frame框架
 const MainFrame = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/MainFrame'))
   })
-} // Frame框架
-
+}
+// 首页
 const Index = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/Layout/Index'))
   })
-} // 首页
-const List = resolve => {
-  require.ensure([], () => {
-    resolve(require('@/views/List/List'))
-  })
-} // 图文简介列表
+}
+// 消息
 const Message = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/Message/Message'))
   })
-} // 消息
+}
+// 消息详情
 const Details = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/Details/Details'))
   })
-} // 消息详情
+}
+// 我的
 const User = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/User/User'))
   })
-} // 我的
-const EditPhoto = resolve => {
-  require.ensure([], () => {
-    resolve(require('@/views/User/EditPhoto'))
-  })
-} // 修改头像
+}
+// 地图
 const Map = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/Map/Map'))
   })
-} // 地图
+}
+// 关于我们
 const AboutUs = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/More/AboutUs'))
   })
-} // 关于我们
+}
+// 错误404
 const NotFound = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/Layout/404'))
   })
-} // 错误404
+}
+// 更多
 const More = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/More/More'))
   })
-} // 更多
+}
+// 更多里的公用页面
 const MorePublic = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/More/MorePublic'))
   })
-} // 更多里的公用页面
+}
+// 更多里的帮助页面
 const Help = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/More/Help'))
   })
-} // 更多里的帮助页面
+}
+// 更多里的意见反馈
 const FeedBack = resolve => {
   require.ensure([], () => {
     resolve(require('@/views/More/FeedBack'))
   })
-} // 更多里的意见反馈
+}
 
 Vue.use(Router)
 
@@ -123,7 +127,7 @@ export default new Router({
         {
           path: '/userHome',
           component: User,
-          name: '我的', 
+          name: '我的',
 		  meta: {name: "我的", tabbar: true, keepAlive: true}
         },
         {

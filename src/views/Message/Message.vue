@@ -1,30 +1,30 @@
 <template>
   <div style="height: 100%;">
-	<tab>
+    <tab>
       <tab-item v-for="(data, index) in tab" :key="index" :selected="data.id==1">{{data.label}}</tab-item>
     </tab>
-	  <div style="height:calc(100% - 50px);overflow:hidden;">
-		<pull-to :top-load-method="refresh" @infinite-scroll="infinite" @top-state-change="stateChange">
-		  <!-- 下拉刷新 -->
-		  <template slot="top-block" slot-scope="props">
-			<div class="top-load-wrapper">
-			  <svg class="icon"
-				   :class="{
+    <div style="height:calc(100% - 50px);overflow:hidden;">
+      <pull-to :top-load-method="refresh" @infinite-scroll="infinite" @top-state-change="stateChange">
+        <!-- 下拉刷新 -->
+        <template slot="top-block" slot-scope="props">
+          <div class="top-load-wrapper">
+            <svg class="icon"
+                 :class="{
 							'icon-arrow': props.state === 'trigger',
 							'icon-loading': props.state === 'loading'
 						}"
-				   aria-hidden="true">
-				<use :xlink:href="iconLink"></use>
-			  </svg>
-			  {{ props.stateText }}
-			</div>
-		  </template>
-		  <!-- 面板列表 -->
-		  <panel :list="list.data" :type="list.type"></panel>
-		  <!-- 加载更多 -->
-		  <load-more :show-loading="infiniteLoading" :tip="infiniteTip"></load-more>
-		</pull-to>
-	</div>
+                 aria-hidden="true">
+              <use :xlink:href="iconLink"></use>
+            </svg>
+            {{ props.stateText }}
+          </div>
+        </template>
+        <!-- 面板列表 -->
+        <panel :list="list.data" :type="list.type"></panel>
+        <!-- 加载更多 -->
+        <load-more :show-loading="infiniteLoading" :tip="infiniteTip"></load-more>
+      </pull-to>
+    </div>
   </div>
 </template>
 
@@ -33,9 +33,10 @@
   import {getMessage} from '@/api/api';
 
   export default {
+    components: {PullTo},
     data() {
       return {
-		tab:[{id:"1", label:'未处理报警'},{id:"2", label:'已处理报警'},{id:"3", label:'未读消息'},{id:"4", label:'已读消息'}],
+        tab: [{id: "1", label: '未处理报警'}, {id: "2", label: '已处理报警'}, {id: "3", label: '未读消息'}, {id: "4", label: '已读消息'}],
         list: [],
         infiniteLoading: true,
         infiniteTip: "正在加载",
