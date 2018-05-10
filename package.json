@@ -1,8 +1,8 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "",
+  "name": "LW-APP",
+  "version": "3.0.1",
+  "description": "APP-MAIN",
+  "author": "Tangw",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js --host 192.168.1.114",
