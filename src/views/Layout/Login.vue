@@ -48,8 +48,8 @@
         passwordPlaceholder: "请输入密码",
         passWordValue: '', //密码
         is_show: true, //密码的显示隐藏
-        Logo: "//appdev.pujiajia.com/static/mobile/images/app_ico_touch.png",
-        LoginBg: " ../../src/assets/login_bg.jpg",
+        Logo: login_logo,
+        LoginBg: login_bg,
         VerinFormation: "冷王智能科技 V3.0.1"
       }
     },
