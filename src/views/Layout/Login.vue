@@ -1,18 +1,23 @@
 <template>
   <div class="login">
-    <!--:style="'height:100vh;background:url('+LoginBg+')'"-->
     <blur :blur-amount=0 :url="LoginBg" style="height: 100vh;">
       <p class="center" style="margin: 0 20px;">
         <flexbox align="center" style="min-height: 100vh;">
           <flexbox-item>
             <!-- 圆角Logo -->
             <div class="center"><img :src="Logo"></div>
-            <div>
+            <div style="max-width:400px;margin:0 auto;">
               <!-- 输入框组 -->
               <group :gutter="50">
                 <x-input title="账户:" :placeholder="userNamePlaceholder" novalidate v-model="userNameValue"></x-input>
+              </group>
+              <group>
                 <x-input title="密码:" :placeholder="passwordPlaceholder" novalidate v-model="passWordValue"
-                         type="password"></x-input>
+                         :type="(is_show)? 'password': 'text'">
+                  <i slot="right" style="font-size:24px;"
+                     :class="{'weui-icon- iconfont icon-xianshimima':is_show, 'weui-icon- iconfont icon-buxianshimima':!is_show}"
+                     @click="is_show=!is_show"></i>
+                </x-input>
               </group>
               <!-- 登录按钮 -->
               <box gap="30px 0">
@@ -42,8 +47,9 @@
         userNameValue: '', //用户名
         passwordPlaceholder: "请输入密码",
         passWordValue: '', //密码
-        Logo: "http://appdev.pujiajia.com/static/mobile/images/app_ico_touch.png",
-        LoginBg: "http://pic.qiantucdn.com/58pic/28/54/39/76358PIC8iekK33fi2JSF_PIC2018.jpg!/fw/780/watermark/url/L3dhdGVybWFyay12MS4zLnBuZw==/align/center/crop/0x3040a0a0",
+        is_show: true, //密码的显示隐藏
+        Logo: "//appdev.pujiajia.com/static/mobile/images/app_ico_touch.png",
+        LoginBg: " ../../src/assets/login_bg.jpg",
         VerinFormation: "冷王智能科技 V3.0.1"
       }
     },
@@ -96,28 +102,6 @@
   }
 </script>
 
-<style>
-  /*.login * {*/
-  /*color: #F8F8FF;*/
-  /*}*/
-
-  /*.login .weui-cells {*/
-  /*background: transparent !important;*/
-  /*}*/
-
-  /*.login input::-webkit-input-placeholder {*/
-  /*color: #F8F8FF;*/
-  /*}*/
-
-  /*.login .weui-icon-clear {*/
-  /*color: #708090;*/
-  /*}*/
-
-  /*.login .weui-input {*/
-  /*padding: 4px 0;*/
-  /*}*/
-</style>
-
 <style scoped>
   .login .center {
     text-align: center;
@@ -130,5 +114,19 @@
     height: 100px;
     border-radius: 100%;
     border: 4px solid #ececec;
+  }
+</style>
+<style>
+  .login .vux-no-group-title {
+    border-radius: 5px;
+    box-shadow: 0 0 5px #eee;
+  }
+
+  .login .weui-cells:before {
+    border-top: 0 !important;
+  }
+
+  .login .weui-cells:after {
+    border-bottom: 0 !important;
   }
 </style>

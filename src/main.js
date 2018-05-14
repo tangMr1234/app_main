@@ -73,7 +73,7 @@ Vue.component('cell-box', CellBox)
 Vue.component('box', Box)
 Vue.component('loading', Loading)
 
-// FastClick.attach(document.body)
+FastClick.attach(document.body)
 
 const store = new Vuex.Store({}) // 这里你可能已经有其他 module
 
@@ -226,7 +226,6 @@ router.afterEach(function (to) {
   // isPush = false;
 })
 
-/* eslint-disable no-new */
 new Vue({
   store,
   router,

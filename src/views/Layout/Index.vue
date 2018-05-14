@@ -167,11 +167,11 @@
           if (res.data) {
             _this.Index_data = res.data;
           } else {
-            _this.confirm("提示", "数据加载出错，请尝试刷新或者联系管理员！", "刷新试试", _this.location); //使用main中的全局方法调用弹窗
+            _this.confirm("提示", "数据加载出错，请尝试刷新或者联系管理员！", "刷新试试", _this.reload); //使用main中的全局方法调用弹窗
           }
           _this.loadingRemove(); //  使用main中的全局方法关闭loading
         }).catch(function (error) {
-          _this.confirm("提示", error.message, "刷新试试", _this.location); //使用main中的全局方法调用弹窗
+          _this.confirm("提示", error.message, "刷新试试", _this.reload); //使用main中的全局方法调用弹窗
           _this.loadingRemove(); //  使用main中的全局方法关闭loading
         });
       },
