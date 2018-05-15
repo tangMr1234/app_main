@@ -16,7 +16,7 @@
       </cell>
     </group>
     <!-- 退出登录按钮 -->
-    <group>
+    <group :style="'opacity:'+ is_show">
       <cell title="退出登录" @click.native="logOut">
         <i slot="icon" class="iconfont icon-dengchu"
            style="display:block;font-size: 22px;margin:0 5px 0 3px;color:#409eff;"></i>
@@ -37,6 +37,7 @@
     data() {
       return {
         userData: [],
+        is_show: "0",
       }
     },
     methods: {
@@ -75,19 +76,21 @@
           } else {
             _this.confirm("提示", "数据加载失败！", "重新登录", _this.location); //使用main中的全局方法调用弹窗
           }
-		  _this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
+          _this.is_show = "1";
+          _this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
         }).catch(function (error) {
           _this.confirm("提示", error.message, "重新登录", _this.location); //使用main中的全局方法调用弹窗
+          _this.is_show = "1";
           _this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
         });
       },
     },
     mounted() {
-	  this.get_UserData();
+      this.get_UserData();
     },
-	activated(){
-	  this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
-	}
+    activated() {
+      this.loadingRemove(); //  使用MAIN中的全局方法关闭LOADING
+    }
   }
 </script>
 

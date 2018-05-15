@@ -1,27 +1,17 @@
 <template>
-  <div class="nofound" style="height:100%;">
+  <div class="nofound" style="height:100vh;">
     <!-- 图片+提示文字 -->
-    <flexbox>
-      <flexbox-item>
-        <div class="flex-demo">
-          <x-img :src="src" :default-src="src" :offset="-100"></x-img>
-          <divider style="font-size:18px;font-weight: bold;color:# 3EA9F5;">{{Nofound.title}}</divider>
-          <div v-html='Nofound.content'></div>
-        </div>
-      </flexbox-item>
-    </flexbox>
+    <div class="flex-demo">
+      <x-img :src="src" style="box-shadow:0 0 10px #000;"></x-img>
+      <!--<divider><b style="font-size:18px;color: #3EA9F5;">{{Nofound.title}}</b></divider>-->
+      <!--<div v-html='Nofound.content'></div>-->
+    </div>
     <!-- 底栏按钮 -->
-    <tabbar>
-      <tabbar-item @click.native="$router.go(-1)">
-        <span slot="label">返回上层</span>
-      </tabbar-item>
-      <tabbar-item link="/login" style="border-left: 1px solid #DCDCDC;border-right: 1px solid #DCDCDC;">
-        <span slot="label">重新登录</span>
-      </tabbar-item>
-      <tabbar-item link="/">
-        <span slot="label">返回首页</span>
-      </tabbar-item>
-    </tabbar>
+    <box gap="30px 10px">
+      <x-button type="primary" plain>返回上层</x-button>
+      <x-button type="primary">返回首页</x-button>
+      <x-button type="warn">重新登录</x-button>
+    </box>
   </div>
 </template>
 
@@ -29,10 +19,10 @@
   export default {
     data() {
       return {
-        src: "http://www.100sucai.com/democode/1670/images/banner.png",
+        src: "http://58pic.ooopic.com/58pic/19/42/73/83y58PICW9n.jpg",
         Nofound: {
           title: "冷王科技提醒您",
-          content: "你访问的页面丢失了！可进行如下操作 :<br>1、检查网络是否出错<br>2、联系管理员或客服<br>3、访问系统其他页面"
+          content: "你访问的页面丢失了！可进行如下操作 :<br>1、检查网络是否出错<br>2、访问系统其他页面<br>3、联系管理员或客服"
         }
       }
     },
@@ -44,8 +34,6 @@
 </script>
 
 <style lang="less">
-  @import '~vux/src/styles/1px.less';
-
   .flex-demo {
     text-align: center;
   }

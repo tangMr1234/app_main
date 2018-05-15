@@ -44,7 +44,7 @@
       },
       //  获取消息数量
       getMessageCounts(num) {
-        getMessageCount("").then((res) => {
+        getMessageCount().then((res) => {
           if (res.data) {
             let old_count = localStorage.getItem("OldMessageCounts");
             let badges = res.data.message_count;
@@ -87,8 +87,3 @@
     }
   }
 </script>
-<style lang="less" scoped>
-  [v-cloak] {
-    display: none;
-  }
-</style>

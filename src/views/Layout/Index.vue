@@ -1,15 +1,13 @@
 <template>
-  <div style="height:100%;" class="warpMain index" v-cloak>
+  <div :style="'height:100%;visibility:'+ is_show" class="warpMain index" v-cloak>
     <!-- banner -->
     <div
       v-if="Index_data.ads&&Index_data.ads.top_slider&&Index_data.ads.top_slider.content&&Index_data.ads.top_slider.content!=''">
       <swiper :options="swiperOptionBanner" ref="mySwiper">
-        <!-- slides -->
         <swiper-slide v-for="(item, index) in Index_data.ads.top_slider.content" :key="index"
                       @click.native="onItemClick(item.url, item.frameurl)">
-          <img :src="item.img" width="100%" style="display:block;">
+          <img :src="item.img" width="100%" style="display:block;" @load="img_load">
         </swiper-slide>
-        <!-- Optional controls -->
         <div class="swiper-pagination" slot="pagination"></div>
       </swiper>
     </div>
@@ -31,12 +29,11 @@
       <group
         :title="Index_data.apps.frequently.name">
         <swiper :options="swiperOptionButton" ref="mySwiperButton" style="padding-bottom:35px;">
-          <!-- slides -->
           <swiper-slide class="black" v-for="(item,index) in Index_data.apps.frequently.grid" :key="index">
             <flexbox :gutter="0" wrap="wrap">
               <flexbox-item :span="1/5" v-for="(obj, index) in item" :key="index"
                             @click.native="onItemClick(obj.url, obj.frameurl)">
-                <div class="flex-demo app_badge"><img slot="icon" :src="obj.icon">
+                <div class="flex-demo app_badge"><img slot="icon" :src="obj.icon" width="100%">
                   <div class="flex-demo">{{obj.label}}</div>
                   <div v-if="obj.warning" class="apps_badge">
                     <badge v-if="obj.warning=='dot'" class="dot"></badge>
@@ -46,7 +43,6 @@
               </flexbox-item>
             </flexbox>
           </swiper-slide>
-          <!-- Optional controls -->
           <div class="swiper-pagination" slot="pagination"></div>
         </swiper>
       </group>
@@ -63,7 +59,7 @@
             <marquee :interval=3500>
               <marquee-item v-for="(item,index) in Index_data.ads.marquee.content" :key="index"
                             @click.native="onItemClick(item.url, item.frameurl)" :item-height="40"
-                            class="align-middle whiteSpace" v-html="item.content"></marquee-item>
+                            class="whiteSpace text-ellipsis" v-html="item.content"></marquee-item>
             </marquee>
           </flexbox-item>
           <flexbox-item :span="1/10" style="text-align:center;">
@@ -78,7 +74,7 @@
         <flexbox :gutter="0" wrap="wrap" style="padding:10px 5px;">
           <flexbox-item :span="1/5" v-for="(obj, index) in item.grid" :key="index"
                         @click.native="onItemClick(obj.url, obj.frameurl)">
-            <div class="flex-demo app_badge"><img slot="icon" :src="obj.icon">{{obj.label}}
+            <div class="flex-demo app_badge"><img slot="icon" :src="obj.icon" width="100%">{{obj.label}}
               <div v-if="obj.warning" class="apps_badge">
                 <badge v-if="obj.warning=='dot'" class="dot"></badge>
                 <badge v-else :text="obj.warning" class="number"></badge>
@@ -115,6 +111,8 @@
     },
     data() {
       return {
+        //页面加载完再显示
+        is_show: "hidden",
         //初始化首页数据
         Index_data: {},
         //banner轮播初始化,使用swiper4插件,具体Api可查看手册
@@ -123,7 +121,7 @@
           preloadImages: false,
           autoplay: {
             delay: 5000,
-            disableOnInteraction: false //手动滑动或其他操作后轮播能继续运行
+            disableOnInteraction: false //手动滑动或其他操作后自动轮播能继续运行
           },
           loop: true,
           pagination: {
@@ -145,6 +143,10 @@
       //pannel列表部分跳转
       panelLocation(item) {
         this.onItemClick(item.link, item.frameurl);
+      },
+      //等轮播图片加载出来后显示页面，预防图片造成页面闪动
+      img_load() {
+        this.is_show = "visible";
       },
       //点击事件，使用vue query传递页面参数
       onItemClick(Url, frameUrl) {
@@ -169,15 +171,12 @@
           } else {
             _this.confirm("提示", "数据加载出错，请尝试刷新或者联系管理员！", "刷新试试", _this.reload); //使用main中的全局方法调用弹窗
           }
-          _this.loadingRemove(); //  使用main中的全局方法关闭loading
         }).catch(function (error) {
           _this.confirm("提示", error.message, "刷新试试", _this.reload); //使用main中的全局方法调用弹窗
-          _this.loadingRemove(); //  使用main中的全局方法关闭loading
         });
       },
     },
-    // 页面渲染后执行的钩子
-    mounted() {
+    created() {
       this.getIndexData();
     },
     activated() {
@@ -185,16 +184,12 @@
     },
     //  销毁组件
     beforeDestroy() {
-      // this.$refs.mySwiper.$destroy(false);
-      // this.$refs.mySwiperButton.$destroy(false);
+      this.$refs.mySwiper.$destroy(false);
+      this.$refs.mySwiperButton.$destroy(false);
     }
   }
 </script>
 <style>
-  .index .flex-demo img {
-    width: 100%;
-  }
-
   .ads img {
     display: block;
   }
@@ -221,10 +216,6 @@
 <style lang="less" scoped>
   @import '~vux/src/styles/1px.less';
 
-  [v-cloak] {
-    display: none;
-  }
-
   .flex-demo {
     text-align: center;
     background-clip: padding-box;
@@ -236,9 +227,6 @@
   .whiteSpace {
     height: 40px;
     line-height: 40px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
     color: #444;
   }
 </style>
